@@ -43,28 +43,56 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 148),
               Text(
                 'Your email',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF1E5D6E),),
               ),
               SizedBox(height: 8),
+              // TextFormField(
+              //   decoration: InputDecoration(
+              //     hintText: 'e.g. sandra@example.com',
+              //     hintStyle: TextStyle(color: Color(0xFF1E5D6E)), // Hint text color
+              //     border: OutlineInputBorder(),
+              //   ),
+              //   validator: (value) {
+              //     if (value == null || value.isEmpty) {
+              //       return 'Please enter your email';
+              //     } else if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+              //         .hasMatch(value)) {
+              //       return 'Please enter a valid email';
+              //     }
+              //     return null;
+              //   },
+              // ),
               TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'e.g. sandra@example.com',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  } else if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
-                      .hasMatch(value)) {
-                    return 'Please enter a valid email';
-                  }
-                  return null;
-                },
-              ),
+  decoration: InputDecoration(
+    hintText: 'e.g. sandra@example.com',
+     hintStyle: TextStyle(
+      color: const Color(0xFF1E5D6E).withOpacity(0.5), // 50% opacity
+    ), // Hint text color
+    border: OutlineInputBorder(),
+
+    // Default border
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: const BorderSide(color: Color.fromRGBO(30, 93, 110, 0.1), width: 2), // 50% opacity
+    ),
+
+  ),
+
+  validator: (value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your email';
+    } else if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+        .hasMatch(value)) {
+      return 'Please enter a valid email';
+    }
+    return null;
+  },
+),
+
               SizedBox(height: 20),
               Text(
                 'Your password',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF1E5D6E),),
               ),
               SizedBox(height: 8),
               TextFormField(
@@ -73,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                      color: Colors.grey,
+                      color: Color(0xFF3640BB),
                     ),
                     onPressed: () {
                       setState(() {
@@ -82,6 +110,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   border: OutlineInputBorder(),
+                   enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: const BorderSide(color: Color.fromRGBO(30, 93, 110, 0.1), width: 2), // 50% opacity
+    ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -93,15 +125,24 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
               ),
               SizedBox(height: 8),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ResetPasswordPage()),
-                  );
-                },
-                child: Text('I forgot my password'),
-              ),
+             TextButton(
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ResetPasswordPage()),
+    );
+  },
+  style: TextButton.styleFrom(
+    backgroundColor: Colors.transparent, // No background
+    foregroundColor: Colors.black, // Text color
+    overlayColor: Colors.transparent, // No hover effect
+  ),
+  child: const Text(
+    'I forgot my password',
+    style: TextStyle(fontWeight: FontWeight.bold, color:Color(0xFF3640BB)),
+  ),
+),
+
               SizedBox(height: 16), // Adds space before the button
               ElevatedButton(
                 onPressed: () {
@@ -115,12 +156,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 style: ElevatedButton.styleFrom(
                   // backgroundColor: Color(0xFF353fbb),
-                  backgroundColor: Color(0xFF353fbb).withOpacity(0.1),
+                  backgroundColor: Color(0xFF3640BB).withOpacity(0.1),
                   minimumSize: Size(double.infinity, 50),
                 ),
                 child: Text(
                   'Log in',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Color(0xFFE5ECF2)),
                 ),
               ),
             ],

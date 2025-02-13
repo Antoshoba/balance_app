@@ -16,19 +16,19 @@ class HelpButtonDemo extends StatelessWidget {
           onTap: onToggle,
           child: AnimatedContainer(
             duration: Duration(milliseconds: 300),
-            width: isExpanded ? 200 : 50,
-            height: 50,
+            width: isExpanded ? 200 : 90,
+            height: 40,
             decoration: BoxDecoration(
               color: Color(0xFFDDDCF5), // Background color
               borderRadius: BorderRadius.circular(25),
             ),
             child: Row(
               mainAxisAlignment:
-                  isExpanded ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
+                  isExpanded ? MainAxisAlignment.spaceBetween : MainAxisAlignment.start,
               children: [
                 if (isExpanded)
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                     padding: const EdgeInsets.only(left: 10.0, right: 1.0), // Added 50 to right
                     child: Icon(
                       Icons.help_outline,
                       color: Color(0xFF4C48B7), // Icon color
@@ -47,7 +47,7 @@ class HelpButtonDemo extends StatelessWidget {
                     ),
                   ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: const EdgeInsets.only(left: 10.0, right: 0),
                   child: Icon(
                     isExpanded ? Icons.arrow_forward : Icons.help_outline,
                     color: Color(0xFF4C48B7), // Icon color

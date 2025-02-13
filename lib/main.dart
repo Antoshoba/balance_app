@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'pages/screens/BalanceAppScreen.dart';
 import 'package:balance_app/widgets/HelpButtonDemo.Dart'; // Corrected import BalanceAppScreen
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -59,8 +58,8 @@ class _AppWithStickyButtonState extends State<AppWithStickyButton> {
 
           // Sticky Button
           Positioned(
-            right: -40,
-            bottom: 156,
+            right: -50,
+            bottom: 200,
             child: HelpButtonDemo(
               isExpanded: isExpanded,
               onToggle: toggleButton,

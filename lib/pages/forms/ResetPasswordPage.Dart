@@ -38,10 +38,10 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 8.0),
+              SizedBox(height: 258.0),
               Text(
                 'Your email',
-                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF1E5D6E)),
               ),
               SizedBox(height: 8.0),
               TextFormField(
@@ -81,7 +81,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     padding: EdgeInsets.symmetric(vertical: 16.0),
                     backgroundColor: const Color(0xFF4C47F7),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(25.0),
                     ),
                   ),
                   child: Text(

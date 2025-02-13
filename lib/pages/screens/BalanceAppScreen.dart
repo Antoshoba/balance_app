@@ -29,127 +29,191 @@ class _BalanceAppScreenState extends State<BalanceAppScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF8EBF7), // Light pink background
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // App logo and text
-                    Column(
-                      children: [
-                        Image.asset(
-                          'assets/images/balance.jpg', // Replace with your saved image path
-                          height: 100,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 30),
-                    // Description text
-                    GestureDetector(
-                      onTap: _toggleMessage,
-                      child: !_showMessage
-                          ? const Text(
-                              'Read a message from Louise',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Color(0xFF4C48B7),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
+                  child: Column(
+                    children: [
+                      // Description text with expansion
+                      GestureDetector(
+                        onTap: _toggleMessage,
+                        child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 26.0),
+                            child: _showMessage
+                                ? SizedBox(
+                                    height:
+                                        455, // Adjust height to control scroll area
+                                    child: SingleChildScrollView(
+                                        child: Column(
+                                      children: [
+                                        const SizedBox(height: 30),
+                                        Image.asset(
+                                          'assets/images/balance.jpg',
+                                          height: 100,
+                                        ),
+                                        const SizedBox(height: 30),
+                                        RichText(
+                                          text: TextSpan(
+                                            style: TextStyle(
+                                              fontSize: 25,
+                                              color: Color(
+                                                  0xFF1E5D6E), // Default text color
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: "\u201C",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight
+                                                      .bold, // Make it bold
+                                                  // fontStyle: FontStyle
+                                                  //     .italic, // Italicize it
+                                                  color: Color(0xFF1E5D6E),
+                                                  fontSize:
+                                                      28, // Change color (optional)
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                    "\n\nI'm Dr Louise Newson - GP,\nMenopause Specialist and\nFounder of ",
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                    "balance", // Styled "Italy"
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight
+                                                      .bold, // Make it bold
+                                                  fontStyle: FontStyle
+                                                      .italic, // Italicize it
+                                                  color: Color(0xFF1E5D6E),
+                                                  // Change color (optional)
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                    ". Welcome!\n\nMy initial consultation with\nmy patients is usually about\nunderstanding their overall\nhealth, medical history, "
+                                                    "and\nanything that may impact the\nmenopause and how it's treated.\n\n"
+                                                    "So once we have a little more\ninformation about you, we'll be\nable to help you understand\nmore about your body - "
+                                                    "we'll\nalways keep your information\nsafe so that you feel comfortable\nsharing it with us.\n\n"
+                                                    "Remember, this app should\nnever replace an in-person\nconsultation with your doctor.",
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        // ),
+
+                                        const SizedBox(height: 20),
+
+                                        // Main illustration
+                                        Image.asset(
+                                          'assets/images/firstpage.jpg',
+                                          height: 250,
+                                          width: 400,
+                                        ),
+                                        const SizedBox(height: 20),
+                                      ],
+                                    )),
+                                  )
+                                : Column(children: [
+                                    const SizedBox(height: 30),
+                                    Image.asset(
+                                      'assets/images/balance.jpg',
+                                      height: 100,
+                                    ),
+                                    const SizedBox(height: 30),
+                                    const Text(
+                                      'Read a message from Louise',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Color(0xFF4C48B7),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 20),
+
+                                    // Main illustration
+                                    Image.asset(
+                                      'assets/images/firstpage.jpg',
+                                      height: 250,
+                                      width: 400,
+                                    ),
+                                    // const SizedBox(height: 40),
+                                  ])),
+                      ),
+                      const SizedBox(height: 37),
+                      // Buttons
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                        child: Column(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => WhoWeAreScreen(),
+                                  ),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF4C48B7),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 15),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
                               ),
-                            )
-                          : const Padding(
-                              padding:
-                                  EdgeInsets.symmetric(horizontal: 26.0),
-                              child: Text(
-                                "\n\nI'm Dr Louise Newson - GP, Menopause Specialist, and Founder of Balance. Welcome! "
-                                "My initial consultation with my patients is usually about understanding their overall health, medical history, "
-                                "and anything that may impact the menopause and how it's treated. "
-                                "So once we have a little more information about you, we'll be able to help you understand more about your body - "
-                                "we'll always keep your information safe so that you feel comfortable sharing it with us. "
-                                "Remember, this app should never replace an in-person consultation with your doctor.",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
+                              child: const Center(
+                                child: Text(
+                                  'Sign up',
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.white),
                                 ),
                               ),
                             ),
-
-                      // : Text(""),
-                    ),
-                    const SizedBox(height: 20),
-                    // Show the message if toggled
-                    // if (_showMessage)
-
-                    // Main illustration
-                    Image.asset(
-                      'assets/images/firstpage.jpg', // Replace with your saved image path
-                      height: 250,
-                      width: 400,
-                    ),
-                    const SizedBox(height: 40),
-                  ],
-                ),
-              ),
-            ),
-            // Buttons
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Column(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      // Add sign-up action
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => WhoWeAreScreen()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF4C48B7), // Purple color
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Sign up',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  OutlinedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      );
-                      // Add log-in action
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Color(0xFF4C48B7)),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Log in',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xFF4C48B7),
+                            const SizedBox(height: 20),
+                            OutlinedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginScreen(),
+                                  ),
+                                );
+                              },
+                              style: OutlinedButton.styleFrom(
+                                side:
+                                    const BorderSide(color: Color(0xFF4C48B7)),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 15),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  'Log in',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Color(0xFF4C48B7),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 30),
+                          ],
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  const SizedBox(height: 30),
-                ],
+                ),
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
